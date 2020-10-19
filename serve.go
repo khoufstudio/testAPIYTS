@@ -27,8 +27,10 @@ func main() {
 	dbname := os.Getenv("dbname")
 	dbhost := os.Getenv("dbhost")
 	dbport := os.Getenv("dbport")
+	dbpass := os.Getenv("dbpass")
 
-	dsn := fmt.Sprintf("%s@(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", username, dbhost, dbport, dbname)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", username, dbpass, dbhost, dbport, dbname)
+	fmt.Println(dsn)
 
 	adapter, err := mysql.Open(dsn)
 	if err != nil {
